@@ -2,7 +2,7 @@ import axios from 'axios';
 
 async function getAll(filter: string): Promise<Business[]> {
   const allBusinesses = [
-    new Business(await fetchBusiness('GXvPAor1ifNfpF0U5PTG0w')),
+    new Business(await fetchBusiness('GXvPAor1ifNfpF0U5PTG0w')), // code smell, valid ids
     new Business(await fetchBusiness('ohGSnJtMIC5nPfYRi_HTAg')),
   ].filter((b) =>
     filter != ''
@@ -21,7 +21,7 @@ async function get(placeId: string): Promise<BusinessDetails> {
 
 async function fetchBusiness(placeId: string): Promise<Response> {
   const { data: business } = await axios.get<Response>(
-    `https://storage.googleapis.com/coding-session-rest-api/${placeId}`,
+    `https://storage.googleapis.com/coding-session-rest-api/${placeId}`, // code smell, store base url in .env
     {},
   );
   return business;
@@ -37,6 +37,7 @@ interface Response {
 }
 
 class Business {
+  // code smell, move data object in separate folder
   id: string;
   name: string;
   address: string;

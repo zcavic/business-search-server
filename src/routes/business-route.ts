@@ -6,7 +6,7 @@ import {
 
 class BusinessRoutes {
   static setRoutes(app: Express) {
-    app.get('/businesses', getAllBusiness);
+    app.get('/businesses', getAllBusiness); // todo, add middleware for validation
     app.get('/businesses/:id', getBusiness);
   }
 }
